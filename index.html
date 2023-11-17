@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+    <link rel="icon" type="image/png" href="images/icon.png" />
+    <meta content=article property=og:type>
+    <meta content=前端作品集 property=og:title>
+    <meta content=前端作品集 property=og:description>
+    <title>Jerry'log</title>
+    <!-- <script src=https://code.jquery.com/jquery-3.2.1.min.js></script> -->
+    <script src=https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js></script>
+    <link href=https://cdn.jsdelivr.net/npm/vuetify@2.4.3/dist/vuetify.min.css rel=stylesheet>
+    <script src=https://cdn.jsdelivr.net/npm/vuetify@2.4.3/dist/vuetify.js></script>
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+
+  </head>
+
+  <body>
+    <div id="app" v-cloak>
+      <div v-if="loading" class="loading-page">
+        <div class="loading-spinner">
+          <div class="sk-circle">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+          </div>
+        </div>
+      </div>
+      <v-app id="inspire">
+        <header>
+          <div class="headerNavs">
+            <div class="headerNav" @click="scrollTo('about')" @mouseleave="hoverOut" @mouseover="hoverIn('about')">關於我</div>
+            <div class="headerNav" @click="scrollTo('projects')" @mouseleave="hoverOut" @mouseover="hoverIn('projects')">過往專案</div>
+            <div class="headerNav" @click="scrollTo('contact')" @mouseleave="hoverOut" @mouseover="hoverIn('contact')">與我聯繫</div>
+            <div class="navbottom" :class="hover == 'about'? 'left' : hover == 'projects'? 'middle' : 'right'"></div>
+          </div>
+        </header>
+        <main>
+          <div id="about">
+            <div class="profile" v-html="profile"></div>
+          </div>
+  
+          <div id="projects">
+            <div class="myTitle">
+              專案作品
+              <div class="text-en italic">PROJECTS</div>
+            </div>
+            <div v-if="projects.length > 0">
+              <div class="swiperLayout" v-for="project, ind in projects" :key="ind">
+                <div class="swiperType">
+                  {{project.type}}
+                </div>
+                <div class="swiperFrame">
+                  <div class="swiper mySwiper projectSwiper" :class="`projectSwiper${ind+1}`">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide" v-for="item, idx in project.content" :key="`${ind}-${idx}`" @click="showModal(project, idx)">
+                        <img :src="`./images/${item.src}`" alt="">
+                      </div>
+                    </div>
+                    <div class="swiper-pagination italic text-en"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <v-dialog v-model="dialog" width="800">
+              <v-card class="mx-auto">
+                <div class="cardImg">
+                  <img :src="`./images/${selectedItem.src}`" alt="">
+                  <div class="prevBtn" @click="changeItem(false)">
+                    <v-icon large>mdi-chevron-left</v-icon>
+                  </div>
+                  <div class="nextBtn" @click="changeItem(true)">
+                    <v-icon large>mdi-chevron-right</v-icon>
+                  </div>
+                </div>
+                <v-card-text class="text--primary">
+                  <div>{{selectedItem.description}}</div>
+                </v-card-text>
+              </v-card>
+            </v-dialog>
+          </div>
+
+          <div id="contact">
+            <div class="myTitle">
+              與我聯繫
+              <div class="text-en italic">CONTACT</div>
+            </div>
+            <div class="formLayout">
+              <v-form ref="form" v-model="valid" lazy-validation>
+                <v-text-field class="mb-4" v-model="name" :rules="nameRules" label="稱呼" required></v-text-field>
+                <v-text-field class="mb-4" v-model="email" :rules="emailRules" label="聯絡方式" required></v-text-field>
+                <v-textarea
+                  class="mb-4"
+                  name="input-7-1"
+                  label="聯繫事項"
+                  v-model="message"
+                  hint="請輸入聯繫事項"
+                ></v-textarea>
+                <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">Validate</v-btn>
+            
+              </v-form>
+            </div>
+            <v-dialog v-model="formDialog" width="500">
+              <v-card>
+                <v-card-title class="text-h5 grey lighten-2 mb-3">表達已成功送出</v-card-title>
+        
+                <v-card-text>我已確實收到你的留言，但不會經常上去確認內容，如果我有看到會在第一時間跟你聯繫，謝謝。</v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="primary" text @click="formDialog = false">關閉</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+          </div>
+  
+        </main>
+      </v-app>
+
+    </div>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
