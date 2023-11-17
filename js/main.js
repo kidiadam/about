@@ -234,8 +234,8 @@ const app = new Vue({
     },
     initSwiper() {
       const projectSwiper1 = new Swiper(".projectSwiper1", {
-        slidesPerView: 3,
-        spaceBetween: 20,
+        slidesPerView: 1,
+        spaceBetween: 10,
         pagination: {
           el: ".swiper-pagination",
           type: "fraction",
@@ -244,11 +244,17 @@ const app = new Vue({
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          992: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          }
         },
       });
       const projectSwiper2 = new Swiper(".projectSwiper2", {
-        slidesPerView: 3,
-        spaceBetween: 20,
+        slidesPerView: 1,
+        spaceBetween: 10,
         pagination: {
           el: ".swiper-pagination",
           type: "fraction",
@@ -257,11 +263,17 @@ const app = new Vue({
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          992: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          }
         },
       });
       const projectSwiper3 = new Swiper(".projectSwiper3", {
-        slidesPerView: 3,
-        spaceBetween: 20,
+        slidesPerView: 1,
+        spaceBetween: 10,
         pagination: {
           el: ".swiper-pagination",
           type: "fraction",
@@ -270,11 +282,17 @@ const app = new Vue({
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          992: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          }
         },
       });
       const projectSwiper4 = new Swiper(".projectSwiper4", {
-        slidesPerView: 3,
-        spaceBetween: 20,
+        slidesPerView: 1,
+        spaceBetween: 10,
         pagination: {
           el: ".swiper-pagination",
           type: "fraction",
@@ -284,7 +302,14 @@ const app = new Vue({
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
         },
+        breakpoints: {
+          992: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          }
+        },
       });
+
     },
     showModal(project, contentIdx) {
       this.selectedType = project

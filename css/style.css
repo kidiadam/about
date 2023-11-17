@@ -81,10 +81,6 @@ header .headerNavs .navbottom.right {
 }
 
 #about {
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 50%;
   padding: 24px;
 }
 #about .profile {
@@ -96,11 +92,29 @@ header .headerNavs .navbottom.right {
   box-shadow: 1px 1px 10px 3px #dad9d9;
   letter-spacing: 4px;
 }
+@media only screen and (max-width: 992px) {
+  #about .profile {
+    font-size: 16px;
+    letter-spacing: 3px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 264px;
+    align-content: center;
+  }
+}
 
 #projects {
   background: #f5f5f5;
   padding: 24px 40px;
   text-align: center;
+}
+@media only screen and (max-width: 992px) {
+  #projects {
+    padding: 16px 24px;
+  }
 }
 #projects .myTitle {
   font-size: 24px;
@@ -112,6 +126,11 @@ header .headerNavs .navbottom.right {
 }
 #projects .swiperLayout {
   margin-bottom: 80px;
+}
+@media only screen and (max-width: 992px) {
+  #projects .swiperLayout {
+    margin-bottom: 60px;
+  }
 }
 #projects .swiperLayout .swiperType {
   text-align: left;
@@ -128,6 +147,11 @@ header .headerNavs .navbottom.right {
   height: calc((100vw - 120px) / 6);
   cursor: pointer;
 }
+@media only screen and (max-width: 992px) {
+  #projects .swiperLayout .swiper-slide {
+    height: calc((100vw - 48px) / 2);
+  }
+}
 #projects .swiperLayout .swiper-slide img {
   object-fit: contain;
   width: 100%;
@@ -143,10 +167,10 @@ header .headerNavs .navbottom.right {
 }
 @media only screen and (max-width: 992px) {
   #projects .swiperLayout .swiper-pagination {
-    left: 50%;
-    transform: translate(-50%, 0);
-    bottom: calc(100% + 20px);
     font-size: 14px;
+    width: 55px;
+    right: 32px;
+    bottom: calc(100% + 16px);
   }
 }
 #projects .swiperLayout .swiper-button-next, #projects .swiperLayout .swiper-button-prev {
@@ -160,9 +184,8 @@ header .headerNavs .navbottom.right {
 }
 @media only screen and (max-width: 992px) {
   #projects .swiperLayout .swiper-button-next, #projects .swiperLayout .swiper-button-prev {
-    width: 24px;
-    height: 24px;
-    bottom: calc(100% + 20px);
+    width: 30px;
+    height: 30px;
   }
 }
 #projects .swiperLayout .swiper-button-next::after, #projects .swiperLayout .swiper-button-prev::after {
@@ -179,18 +202,12 @@ header .headerNavs .navbottom.right {
 }
 @media only screen and (max-width: 992px) {
   #projects .swiperLayout .swiper-button-prev {
-    right: calc(50% + 24px);
+    right: 88px;
   }
 }
 #projects .swiperLayout .swiper-button-next {
   left: auto;
   right: 0;
-}
-@media only screen and (max-width: 992px) {
-  #projects .swiperLayout .swiper-button-next {
-    right: auto;
-    left: calc(50% + 24px);
-  }
 }
 
 .cardImg {
@@ -234,7 +251,7 @@ header .headerNavs .navbottom.right {
 
 #contact {
   background: #f9f9f9;
-  padding: 24px 40px 80px 24px;
+  padding: 24px 40px 120px 24px;
   text-align: center;
 }
 #contact .myTitle {
@@ -248,6 +265,11 @@ header .headerNavs .navbottom.right {
 #contact .formLayout {
   width: 500px;
   margin: auto;
+}
+@media only screen and (max-width: 992px) {
+  #contact .formLayout {
+    width: 90%;
+  }
 }
 
 .loading-page {

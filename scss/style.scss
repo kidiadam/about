@@ -88,11 +88,6 @@ header {
   }
 }
 #about {
-  // background-image: url(../images/aboutbg.jpg);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 50%;
   padding: 24px;
   .profile {
     background: white;
@@ -102,6 +97,17 @@ header {
     text-align: center;
     box-shadow: 1px 1px 10px 3px #dad9d9;
     letter-spacing: 4px;
+    @media #{$mobile} {
+      font-size: 16px;
+      letter-spacing: 3px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      min-height: 264px;
+      align-content: center;
+    }
   }
 }
 
@@ -109,6 +115,9 @@ header {
   background: #f5f5f5;
   padding: 24px 40px;
   text-align: center;
+  @media #{$mobile} {
+    padding: 16px 24px;
+  }
   .myTitle {
     font-size: 24px;
     margin-bottom: 30px;
@@ -119,6 +128,9 @@ header {
   }
   .swiperLayout {
     margin-bottom: 80px;
+    @media #{$mobile} {
+      margin-bottom: 60px;
+    }
     .swiperType {
       text-align: left;
       font-size: 18px;
@@ -132,6 +144,9 @@ header {
     }
     .swiper-slide {
       height: calc((100vw - 120px) / 6);
+      @media #{$mobile} {
+        height: calc((100vw - 48px) / 2);
+      }
       cursor: pointer;
       img {
         object-fit: contain;
@@ -147,10 +162,10 @@ header {
       right: 50px;
       color: $secondary;
       @media #{$mobile} {
-        left: 50%;
-        transform: translate(-50%, 0);
-        bottom: calc(100% + 20px);
         font-size: 14px;
+        width: 55px;
+        right: 32px;
+        bottom: calc(100% + 16px);
       }
     }
     .swiper-button-next, .swiper-button-prev {
@@ -162,9 +177,8 @@ header {
       border: 1px solid $secondary;
       border-radius: 50%;
       @media #{$mobile} {
-        width: 24px;
-        height: 24px;
-        bottom: calc(100% + 20px);
+        width: 30px;
+        height: 30px;
       }
       &::after {
         font-size: 20px;
@@ -177,16 +191,12 @@ header {
       left: auto;
       right: 112px;
       @media #{$mobile} {
-        right: calc(50% + 24px);
+        right: 88px;
       }
     }
     .swiper-button-next {
       left: auto;
       right: 0;
-      @media #{$mobile} {
-        right: auto;
-        left: calc(50% + 24px);
-      }
     }
   }
 }
@@ -233,7 +243,7 @@ header {
 
 #contact {
   background: $white;
-  padding: 24px 40px 80px 24px;
+  padding: 24px 40px 120px 24px;
   text-align: center;
   .myTitle {
     font-size: 24px;
@@ -246,6 +256,9 @@ header {
   .formLayout {
     width: 500px;
     margin: auto;
+    @media #{$mobile} {
+      width: 90%;
+    }
   }
 }
 
